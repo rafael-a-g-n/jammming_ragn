@@ -2,13 +2,30 @@ import React from "react";
 import styles from "./Track.module.css";
 
 function Track(props) {
-  function renderAction(props) {
-    return (
-      <button className={styles["Track-action"]}>
-        {props.isRemoval ? "-" : "+"}
-      </button>
-    );
+  function renderAction() {
+    if (props.isRemoval) {
+      return (
+        <button className={styles["Track-action"]} onClick={removeTrack}>
+          -
+        </button>
+      );
+    } else {
+      return (
+        <button className={styles["Track-action"]} onClick={addTrack}>
+          +
+        </button>
+      );
+    }
   }
+
+  function addTrack() {
+    props.onAdd(props.track);
+  }
+
+  function removeTrack() {
+    props.onRemove(props.track);
+  }
+
   return (
     <div className={styles.Track}>
       <div className={styles["Track-information"]}>
@@ -19,7 +36,7 @@ function Track(props) {
           {props.track.artist} | {props.track.album}
         </p>
       </div>
-      {/* <button class="Track-action"><!-- + or - will go here --></button> */}
+      {renderAction()}
     </div>
   );
 }

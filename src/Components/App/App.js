@@ -44,6 +44,10 @@ function App() {
     );
   }
 
+  function updatePlaylistName(name) {
+    setPlaylistName(name);
+  }
+
   return (
     <div>
       <h1>
@@ -60,6 +64,7 @@ function App() {
             playlistName={playlistName}
             playlistTracks={playlistTracks}
             onRemove={removeTrack}
+            onNameChange={updatePlaylistName}
           />
         </div>
       </div>
