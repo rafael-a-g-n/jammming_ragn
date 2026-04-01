@@ -40,18 +40,57 @@ This project was built using:
 1. Clone this repository:
    ```bash
    git clone https://github.com/rafael-a-g-n/jammming_ragn.git
+   ```
 2. Navigate to the project directory:
    ```bash
    cd jammming_ragn
+   ```
 3. Install dependencies:
    ```bash
    npm install
-4. Run the app:
+   ```
+4. Set up environment variables (see [Environment Setup](#-environment-setup) below).
+5. Run the app:
    ```bash
    npm start
-5. Open your browser and visit:
-   ```bash
+   ```
+6. Open your browser and visit:
+   ```
    http://localhost:3000
+   ```
+
+---
+
+## 🔑 Environment Setup
+
+### Spotify Developer Dashboard
+
+1. Go to [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) and log in.
+2. Click **Create App** (or open your existing app).
+3. In **Edit Settings → Redirect URIs**, add **both**:
+   - `http://localhost:3000/callback` (for local development)
+   - `https://jammming-ragn.vercel.app/callback` (for the Vercel deployment)
+4. Save the settings and copy your **Client ID**.
+
+### Local Development
+
+Create a `.env` file in the project root (copy from `.env.example`):
+
+```env
+REACT_APP_SPOTIFY_CLIENT_ID=your_spotify_client_id_here
+REACT_APP_SPOTIFY_REDIRECT_URI=http://localhost:3000/callback
+```
+
+### Vercel Deployment
+
+In your Vercel project settings under **Environment Variables**, add:
+
+| Variable | Value |
+|---|---|
+| `REACT_APP_SPOTIFY_CLIENT_ID` | Your Spotify Client ID |
+| `REACT_APP_SPOTIFY_REDIRECT_URI` | `https://jammming-ragn.vercel.app/callback` |
+
+> **Note:** The app uses the **Authorization Code flow with PKCE** — no client secret is required in the browser.
 
 ---
 
